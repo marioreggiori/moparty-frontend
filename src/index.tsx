@@ -4,10 +4,13 @@ import 'normalize.css';
 import './styles.scss';
 import App from './app';
 import * as serviceWorker from './serviceWorker';
+import { RecoilRoot } from 'recoil';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
 );
