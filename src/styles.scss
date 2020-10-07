@@ -1,0 +1,81 @@
+div {
+  position: relative;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1b1b1b;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+
+#app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+
+  #main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    #explorer {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      #search {
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #000;
+        display: flex;
+
+        #search_input {
+          background: transparent;
+          color: #fff;
+          border: none;
+          outline: none;
+          height: 50px;
+          line-height: 50px;
+          padding: 0 20px;
+          flex: 1;
+        }
+
+        #search_filter {
+          font-size: 20px;
+
+          .search_filter_item {
+            display: inline-block;
+            width: 50px;
+            border-left: 1px solid #000;
+            text-align: center;
+            cursor: pointer;
+
+            &[data-active="true"] {
+              background: #000;
+            }
+          }
+        }
+      }
+    }
+
+    #now_playing {
+      height: 50px;
+      border-top: 1px solid #000;
+    }
+  }
+
+  #playlists {
+    width: 300px;
+    border-left: 1px solid #000;
+    overflow: auto;
+  }
+}
+
+.track {
+  border-bottom: 1px solid #000;
+  padding: 20px;
+}
