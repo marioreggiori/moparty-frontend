@@ -6,6 +6,7 @@ import { ITrack } from '../interfaces';
 export default ({ data: { name: title, artists }, image, children }: any) => {
   let coverStyle: any = {};
   if (image) {
+    // todo: remove decode for double encode
     let img = JSON.parse(image.replace(/'/g, '"'));
     coverStyle.backgroundImage = `url('${img.uri}')`;
   }

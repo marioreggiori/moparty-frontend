@@ -65,6 +65,7 @@ const SearchResult = (props: any) => {
   const filter = useRecoilValue(searchFilterState);
   const [searchResult, setSearchResult] = useRecoilState(searchResultState);
 
+  // todo remove effect (only for testing)
   useEffect(() => {
     fetch('/result.json')
       .then(res => res.json())
