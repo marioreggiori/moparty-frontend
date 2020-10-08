@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import Search from './search';
+import Explorer from './explorer';
 import Playlists from './playlists';
 
 
@@ -8,10 +8,7 @@ export default (props: any) => {
   return (
     <div id="app">
       <div id="main">
-        <div id="explorer">
-          <Search />
-          <SearchResult />
-        </div>
+        <Explorer />
         <div id="now_playing"></div>
       </div>
       <Playlists />
@@ -23,10 +20,3 @@ export default (props: any) => {
 
 
 
-const SearchResult = (props: any) => {
-  return (
-    <div>
-      test
-    </div>
-  )
-}

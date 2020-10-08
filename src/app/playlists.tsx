@@ -1,50 +1,27 @@
 import React from 'react';
 
-interface Track {
-  title: string;
-  artist: string;
-  album: string;
-  lenght: number;
-}
+import { tracks } from './data';
+import Track, { TrackControlButton } from './components/track';
+import { faArrowUp, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const tracks: Track[] = [
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-  { title: "Little Dark Age", artist: "MGMT", album: "Oracular Spectacular", lenght: 100 },
-]
 
 export default (props: any) => {
   return (
     <div id="playlists">
+      <div className="header">Meine Wunschliste</div>
       {tracks.map((track, index) => {
         return <Track key={index} {...track} />
+      })}
+      <div className="header">Up Next</div>
+      {[...tracks, ...tracks, ...tracks].map((track, index) => {
+        return (
+          <Track key={index} {...track}>
+            <TrackControlButton icon={faArrowUp} title="hochschieben" />
+            <TrackControlButton icon={faTrash} title="löschen" />
+          </Track>
+        )
       })}
     </div>
   )
 }
 
-const Track = ({ title, artist, album, lenght }: Track) => {
-  return (
-    <div className="track">
-      <div className="title">{title}</div>
-      <div className="artist">{artist}</div>
-      <div className="album">{album}</div>
-    </div>
-  )
-}

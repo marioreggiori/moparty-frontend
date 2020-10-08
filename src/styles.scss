@@ -1,3 +1,23 @@
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 div {
   position: relative;
   box-sizing: border-box;
@@ -42,20 +62,67 @@ body {
           line-height: 50px;
           padding: 0 20px;
           flex: 1;
+          border-right: 1px solid #000;
         }
 
         #search_filter {
-          font-size: 20px;
+          font-size: 26px;
 
           .search_filter_item {
             display: inline-block;
             width: 50px;
-            border-left: 1px solid #000;
+            //border-left: 1px solid #000;
             text-align: center;
             cursor: pointer;
 
-            &[data-active="true"] {
-              background: #000;
+            &[data-active="false"] {
+              background-color: transparent !important;
+            }
+          }
+        }
+      }
+
+      #search_result {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 10px;
+        grid-gap: 10px;
+
+        .search_result_source {
+          background: #080808;
+          border-radius: 10px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+
+          &[data-enabled="false"] {
+            opacity: 0.25;
+          }
+
+          .headline {
+            font-size: 20px;
+            line-height: 2em;
+            padding: 0 10px;
+
+            .icon {
+              display: inline-block;
+              width: 30px;
+              margin-right: 5px;
+              text-align: center;
+            }
+          }
+
+          .search_result_source_list {
+            flex: 1;
+
+            .search_result_source_list_inner {
+              overflow: auto;
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
             }
           }
         }
@@ -63,19 +130,57 @@ body {
     }
 
     #now_playing {
-      height: 50px;
+      height: 80px;
       border-top: 1px solid #000;
     }
   }
 
   #playlists {
-    width: 300px;
+    width: 350px;
     border-left: 1px solid #000;
     overflow: auto;
+
+    .header {
+      position: sticky;
+      top: 0;
+      line-height: 51px;
+      background: #000;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 0 20px;
+      z-index: 5;
+    }
   }
 }
 
 .track {
   border-bottom: 1px solid #000;
-  padding: 20px;
+  padding: 15px;
+  display: flex;
+  .left {
+    width: 50px;
+
+    .cover {
+      height: 50px;
+      width: 50px;
+      background: gray;
+    }
+  }
+  .middle {
+    flex: 1;
+    padding-left: 10px;
+
+    .title {
+      font-weight: bold;
+    }
+  }
+  .right {
+    white-space: nowrap;
+    line-height: 50px;
+    .track_control_button {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 10px;
+    }
+  }
 }
