@@ -153,6 +153,10 @@ body {
       .track {
         flex: 1;
 
+        &:first-child {
+          color: #1db954;
+        }
+
         &:not(:last-child) {
           border-right: 1px solid #000;
         }
