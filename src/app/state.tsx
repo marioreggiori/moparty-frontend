@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
 import { searchFilterItems, tracks } from './data';
 
+// search
 export const searchState = atom({
   key: 'searchState',
   default: 'muse',
@@ -16,12 +17,15 @@ export const searchResultState = atom({
   default: Object.assign({}, ...searchFilterItems.map(item => ({ [item.key]: [] }))),
 });
 
+
+// current song
 export const currentSongState = atom({
   key: 'currentSongState',
   default: tracks[0],
 });
 
 
+// playlists
 export const wishListState = atom({
   key: 'wishListState',
   default: tracks.slice(0, 8),

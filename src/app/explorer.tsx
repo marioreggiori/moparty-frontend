@@ -3,12 +3,30 @@ import { ISearchFilterItem } from './interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { searchFilterItems } from './data';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { searchFilterState, searchState, searchResultState } from './state';
 import Track, { TrackControlButton } from './components/track';
 
+let searchDelayTimeout: any;
+
 export default (props: any) => {
   const [search, setSearch] = useRecoilState(searchState);
+  const [filter, setFilter] = useRecoilState(searchFilterState);
+  const setSearchResult = useSetRecoilState(searchResultState);
+
+  const onChange = (ev: any) => {
+    const val = ev.target.value;
+    setSearch(val);
+    clearTimeout(searchDelayTimeout);
+    searchDelayTimeout = setTimeout(async () => {
+      if (val.trim()) {
+        // todo update searchResultState
+        // await fetch(`/search/?searchquery=${encodeURIComponent(val)}&backend=${Object.keys(filter).filter(key => !!filter[key]).join('&backend=')}`)
+        //   .then(res => res.json())
+        //   .then(setSearchResult);
+      }
+    }, 2000);
+  }
 
   return (
     <div id="explorer">
@@ -16,8 +34,8 @@ export default (props: any) => {
         <div id="search_icon">
           <FontAwesomeIcon icon={faSearch} />
         </div>
-        <input id="search_input" placeholder="Suchen ..." value={search} onChange={ev => setSearch(ev.target.value)} />
-        <SearchFilter />
+        <input id="search_input" placeholder="Suchen ..." value={search} onChange={onChange} />
+        <SearchFilter filter={filter} setFilter={setFilter} />
       </div>
       <SearchResult />
     </div>
@@ -25,9 +43,7 @@ export default (props: any) => {
   );
 }
 
-const SearchFilter = (props: any) => {
-  const [filter, setFilter] = useRecoilState(searchFilterState);
-
+const SearchFilter = ({ filter, setFilter }: any) => {
   return (
     <div id="search_filter">
       {searchFilterItems.map((item) => {
@@ -47,14 +63,12 @@ const SearchFilterItem = ({ icon, onClick, active, label, color }: ISearchFilter
 
 const SearchResult = (props: any) => {
   const filter = useRecoilValue(searchFilterState);
-  const [searchResult, setSearchResult] = useRecoilState(searchResultState)
+  const [searchResult, setSearchResult] = useRecoilState(searchResultState);
 
   useEffect(() => {
-    (async () => {
-      const res = await fetch('/result.json')
-        .then(res => res.json());
-      setSearchResult(res);
-    })()
+    fetch('/result.json')
+      .then(res => res.json())
+      .then(setSearchResult);
   }, [])
 
   return (
