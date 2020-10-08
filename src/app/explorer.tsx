@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ISearchFilterItem } from './interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { searchFilterItems } from './data';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { searchFilterState, searchState } from './state';
-import { tracks } from './data';
+import { searchFilterState, searchState, searchResultState } from './state';
 import Track, { TrackControlButton } from './components/track';
 
 export default (props: any) => {
@@ -14,6 +13,9 @@ export default (props: any) => {
   return (
     <div id="explorer">
       <div id="search">
+        <div id="search_icon">
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
         <input id="search_input" placeholder="Suchen ..." value={search} onChange={ev => setSearch(ev.target.value)} />
         <SearchFilter />
       </div>
@@ -45,21 +47,33 @@ const SearchFilterItem = ({ icon, onClick, active, label, color }: ISearchFilter
 
 const SearchResult = (props: any) => {
   const filter = useRecoilValue(searchFilterState);
+  const [searchResult, setSearchResult] = useRecoilState(searchResultState)
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch('/result.json')
+        .then(res => res.json());
+      setSearchResult(res);
+    })()
+  }, [])
 
   return (
     <div id="search_result">
       {searchFilterItems.map(({ key, label, color, icon }) => {
+        const res: any[] = searchResult[key];
         return (
-          <div key={key} data-enabled={filter[key] === true} className="search_result_source">
-            <div className="headline" style={{ backgroundColor: color }}>
+          <div key={key} data-enabled={filter[key] === true} className="search_result_source" style={{
+            '--accent-color': color,
+          } as React.CSSProperties}>
+            <div className="headline">
               <div className="icon">
                 <FontAwesomeIcon icon={icon} />
               </div>
-              {label}
+              <b>{label}</b> ({res.length} Treffer)
             </div>
             <div className="search_result_source_list">
               <div className="search_result_source_list_inner">
-                {filter[key] === true && tracks.map((track, index) => {
+                {filter[key] === true && res.map((track, index) => {
                   return (
                     <Track key={index} {...track}>
                       <TrackControlButton icon={faHeart} title="Wünschen" onClick={(ev: any) => {

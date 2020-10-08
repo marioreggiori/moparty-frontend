@@ -3,15 +3,20 @@ import React from 'react';
 import { ITrack } from '../interfaces';
 
 
-export default ({ children, title, artist, album, lenght }: ITrack) => {
+export default ({ data: { name: title, artists }, image, children }: any) => {
+  let coverStyle: any = {};
+  if (image) {
+    let img = JSON.parse(image.replace(/'/g, '"'));
+    coverStyle.backgroundImage = `url('${img.uri}')`;
+  }
   return (
     <div className="track">
       <div className="left">
-        <div className="cover" />
+        <div className="cover" style={coverStyle} />
       </div>
       <div className="middle">
         <div className="title">{title}</div>
-        <div className="artist">{artist}</div>
+        <div className="artist">{artists.map((artist: any) => artist.name).join(', ')}</div>
       </div>
       <div className="right">
         {children}
