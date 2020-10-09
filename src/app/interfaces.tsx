@@ -17,3 +17,9 @@ export interface ISearchFilterItem {
   active?: boolean;
   onClick?: any;
 }
+
+export interface ITrackControlButtonProps {
+  onClick: (param: React.MouseEvent<HTMLDivElement, MouseEvent>) => Promise<void>;
+  icon: any;
+  title: string;
+}

@@ -1,6 +1,7 @@
 import { faCheck, faExclamationCircle, faSync } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import { ITrackControlButtonProps } from '../interfaces';
 
 export default ({ data: { name: title, artists }, image, children }: any) => {
   let coverStyle: any = {};
@@ -28,11 +29,7 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
   )
 }
 
-interface ITrackControlButtonProps {
-  onClick: (param: React.MouseEvent<HTMLDivElement, MouseEvent>) => Promise<void>;
-  icon: any;
-  title: string;
-}
+
 
 export const TrackControlButton = ({ icon, title, onClick }: ITrackControlButtonProps) => {
   const [loading, setLoading] = useState(false);
@@ -54,7 +51,7 @@ export const TrackControlButton = ({ icon, title, onClick }: ITrackControlButton
   }
 
   return (
-    <div className="track_control_button" title={title} onClick={click}>
+    <div className="track_control_button" title={title} onClick={click} data-disabled={loading || error || success}>
       {loading
         ? <FontAwesomeIcon icon={faSync} spin />
         : error
