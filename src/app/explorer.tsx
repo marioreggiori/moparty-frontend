@@ -40,7 +40,7 @@ export default (props: any) => {
           <FontAwesomeIcon icon={faSearch} />
         </div>
         <form id="search_form" onSubmit={onSubmit}>
-          <input id="search_input" placeholder="Suchen ... (mit ENTERTaste bestätigen)" value={search} onChange={ev => setSearch(ev.target.value)} />
+          <input id="search_input" autoComplete="off" placeholder="Suchen ... (mit ENTERTaste bestätigen)" value={search} onChange={ev => setSearch(ev.target.value)} />
         </form>
         <SearchFilter filter={filter} setFilter={setFilter} />
       </div>
@@ -93,12 +93,12 @@ const SearchResult = (props: any) => {
                 {filter[key] === true && res.map((track, index) => {
                   return (
                     <Track key={index} {...track}>
-                      <TrackControlButton icon={faHeart} title="Wünschen" onClick={async (ev: any) => {
+                      <TrackControlButton icon={faHeart} title="Wünschen" onClick={async ev => {
                         // todo [test] add to wishlist and update from response
                         await fetch(`/user_wishlist/add?uri=${track.data.uri}`)
                         // todo update wishlist
                       }} />
-                      <TrackControlButton icon={faPlay} title="Probehören" onClick={async (ev: any) => {
+                      <TrackControlButton icon={faPlay} title="Probehören" onClick={async ev => {
                         // todo listen sample and update from response
                       }} />
                     </Track>

@@ -29,7 +29,7 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
 }
 
 interface ITrackControlButtonProps {
-  onClick: any;
+  onClick: (param: React.MouseEvent<HTMLDivElement, MouseEvent>) => Promise<void>;
   icon: any;
   title: string;
 }

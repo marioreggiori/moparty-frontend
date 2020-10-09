@@ -52,11 +52,11 @@ const UserPlaylist = (props: any) => {
         return (
           <Track key={index} {...track}>
             {index > 0 && (
-              <TrackControlButton icon={faArrowUp} title="hochschieben" onClick={(ev: any) => {
+              <TrackControlButton icon={faArrowUp} title="hochschieben" onClick={async ev => {
                 // todo move up in playlist
               }} />
             )}
-            <TrackControlButton icon={faTrash} title="löschen" onClick={(ev: any) => {
+            <TrackControlButton icon={faTrash} title="löschen" onClick={async ev => {
               // todo delete from playlist
             }} />
           </Track>
@@ -91,7 +91,7 @@ const QueueSpotifyPlaylist = (props: any) => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <input value={spotifyUri} onChange={onChange} className="queue_spotify_playlist_input" placeholder={invalid ? "Spotify URI not valid" : "Enter Spotify Playlist URI"} />
+        <input value={spotifyUri} autoComplete="off" onChange={onChange} className="queue_spotify_playlist_input" placeholder={invalid ? "Spotify URI not valid" : "Enter Spotify Playlist URI"} />
       </form>
     </>
   );
