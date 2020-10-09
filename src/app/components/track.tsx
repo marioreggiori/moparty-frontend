@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { ITrackControlButtonProps } from '../interfaces';
 
-export default ({ data: { name: title, artists, album: { name: album } }, image, children }: any) => {
+export default ({ data: { uri, name: title, artists, album: { name: album } }, image, children }: any) => {
   let coverStyle: any = {};
+  let source = uri.match(/^(\w+):/)[1];
   if (image) {
     // todo: remove decode for double encode
     try {
@@ -14,7 +15,7 @@ export default ({ data: { name: title, artists, album: { name: album } }, image,
     }
   }
   return (
-    <div className="track">
+    <div className="track" data-source={source}>
       <div className="left">
         <div className="cover" style={coverStyle} />
       </div>
