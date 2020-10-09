@@ -28,7 +28,7 @@ export default (props: any) => {
         <PlaylistSwitchButton active={selectedPlaylist === PlaylistType.User} icon={faHeart} playlist={PlaylistType.User} select={setSelectedPlaylist} />
         <PlaylistSwitchButton active={selectedPlaylist === PlaylistType.Next} icon={faPlay} playlist={PlaylistType.Next} select={setSelectedPlaylist} />
         <PlaylistSwitchButton active={selectedPlaylist === PlaylistType.History} icon={faHistory} playlist={PlaylistType.History} select={setSelectedPlaylist} />
-        <a id="logout" href="/accounts/logout"><FontAwesomeIcon icon={faSignOutAlt} /></a>
+        <a id="logout" href="/accounts/logout" title="Sign out"><FontAwesomeIcon icon={faSignOutAlt} /></a>
       </div>
       <div id="playlist_content">
         {content}
@@ -42,12 +42,12 @@ const UserPlaylist = (props: any) => {
   const playList = useRecoilValue(playListState);
   return (
     <>
-      <div className="header">Meine Wunschliste</div>
+      <div className="header">My Wish List</div>
       {wishList.length === 0 && <EmptyPlaylist />}
       {wishList.map((track, index) => {
         return <Track key={index} {...track} />
       })}
-      <div className="header">Meine Playlist</div>
+      <div className="header">My Playlist</div>
       <QueueSpotifyPlaylist />
       {playList.length === 0 && <EmptyPlaylist />}
       {playList.map((track, index) => {

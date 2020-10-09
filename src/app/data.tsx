@@ -3,7 +3,7 @@ import { faSoundcloud, faSpotify, faYoutube } from '@fortawesome/free-brands-svg
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
 
 export const searchFilterItems: ISearchFilterItem[] = [
-  { key: "local", label: "Lokal", icon: faFolder, color: '#f9a825' },
+  { key: "local", label: "Server", icon: faFolder, color: '#f9a825' },
   { key: "spotify", label: "Spotify", icon: faSpotify, color: '#1db954' },
   { key: "youtube", label: "YouTube", icon: faYoutube, color: '#ff0000' },
   { key: "soundcloud", label: "SoundCloud", icon: faSoundcloud, color: '#fe5000' },

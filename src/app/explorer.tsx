@@ -40,7 +40,7 @@ export default (props: any) => {
           <FontAwesomeIcon icon={faSearch} />
         </div>
         <form id="search_form" onSubmit={onSubmit}>
-          <input id="search_input" autoComplete="off" placeholder="Suchen ... (mit ENTERTaste bestätigen)" value={search} onChange={ev => setSearch(ev.target.value)} />
+          <input id="search_input" autoComplete="off" placeholder="Search ... (Press ENTER to submit)" value={search} onChange={ev => setSearch(ev.target.value)} />
         </form>
         <SearchFilter filter={filter} setFilter={setFilter} />
       </div>
@@ -87,7 +87,7 @@ const SearchResult = (props: any) => {
               <div className="icon">
                 <FontAwesomeIcon icon={icon} />
               </div>
-              <b>{label}</b> ({searchIsLoading ? 'loading ...' : (res.length.toString() + ' found')})
+              <b>{label}</b> {searchIsLoading || <div className="search_result_source_title_small">{res.length.toString()} Songs found</div>}
             </div>
             <div className="search_result_source_list">
               <div className="search_result_source_list_inner">
