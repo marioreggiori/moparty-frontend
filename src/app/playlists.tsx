@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Track, { TrackControlButton } from './components/track';
-import { faArrowUp, faHeart, faHistory, faList, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faHeart, faHistory, faPlay, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilValue } from 'recoil';
 import { historyListState, playListState, upNextListState, wishListState } from './state';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ export default (props: any) => {
     <div id="playlists">
       <div id="playlist_switch">
         <PlaylistSwitchButton active={selectedPlaylist === PlaylistType.User} icon={faHeart} playlist={PlaylistType.User} select={setSelectedPlaylist} />
-        <PlaylistSwitchButton active={selectedPlaylist === PlaylistType.Next} icon={faList} playlist={PlaylistType.Next} select={setSelectedPlaylist} />
+        <PlaylistSwitchButton active={selectedPlaylist === PlaylistType.Next} icon={faPlay} playlist={PlaylistType.Next} select={setSelectedPlaylist} />
         <PlaylistSwitchButton active={selectedPlaylist === PlaylistType.History} icon={faHistory} playlist={PlaylistType.History} select={setSelectedPlaylist} />
       </div>
       <div id="playlist_content">

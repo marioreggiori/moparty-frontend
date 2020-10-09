@@ -4,7 +4,7 @@ import { searchFilterItems, tracks } from './data';
 // search
 export const searchState = atom({
   key: 'searchState',
-  default: 'muse',
+  default: '',
 });
 
 export const searchFilterState = atom({
@@ -14,7 +14,12 @@ export const searchFilterState = atom({
 
 export const searchResultState = atom({
   key: 'searchResultState',
-  default: Object.assign({}, ...searchFilterItems.map(item => ({ [item.key]: [] }))),
+  default: {},
+});
+
+export const searchIsLoadingState = atom({
+  key: 'searchIsLoading',
+  default: false,
 });
 
 
