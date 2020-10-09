@@ -6,7 +6,7 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
   if (image) {
     // todo: remove decode for double encode
     try{
-      coverStyle.backgroundImage = `url('${image.uri}')`;
+      coverStyle.backgroundImage = `url('${image}')`;
     }catch(e){
       
     }
