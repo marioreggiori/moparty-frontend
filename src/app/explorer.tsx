@@ -21,9 +21,9 @@ export default (props: any) => {
     setSearchIsLoading(true);
 
     let url = `/search/?searchquery=${encodeURIComponent(search)}&backend=${Object.keys(filter).filter(key => !!filter[key]).join('&backend=')}`
-    
+
     // use local dataset for dev
-    if(process.env.NODE_ENV === 'development'){
+    if (process.env.NODE_ENV === 'development') {
       url = '/result.json';
     }
 
@@ -93,10 +93,12 @@ const SearchResult = (props: any) => {
                 {filter[key] === true && res.map((track, index) => {
                   return (
                     <Track key={index} {...track}>
-                      <TrackControlButton icon={faHeart} title="Wünschen" onClick={(ev: any) => {
-                        // todo add to wishlist and update from response
+                      <TrackControlButton icon={faHeart} title="Wünschen" onClick={async (ev: any) => {
+                        // todo [test] add to wishlist and update from response
+                        await fetch(`/user_wishlist/add?uri=${track.data.uri}`)
+                        // todo update wishlist
                       }} />
-                      <TrackControlButton icon={faPlay} title="Probehören" onClick={(ev: any) => {
+                      <TrackControlButton icon={faPlay} title="Probehören" onClick={async (ev: any) => {
                         // todo listen sample and update from response
                       }} />
                     </Track>

@@ -73,8 +73,9 @@ const QueueSpotifyPlaylist = (props: any) => {
     ev.preventDefault();
     let match = spotifyUri.match(/^(?:spotify:playlist:)?([a-zA-Z0-9]{22})$/);
     if (match) {
-      // todo send match[1]
-      console.log(match[1]);
+      // todo [test] send match[1]
+      fetch(`/user_playlist/set?id=${match[1]}`);
+      // todo fetch updated userplaylist
       setSpotifyUri('');
     } else {
       setSpotifyUri('');

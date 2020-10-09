@@ -28,7 +28,13 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
   )
 }
 
-export const TrackControlButton = ({ icon, title, onClick }: any) => {
+interface ITrackControlButtonProps {
+  onClick: any;
+  icon: any;
+  title: string;
+}
+
+export const TrackControlButton = ({ icon, title, onClick }: ITrackControlButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -37,7 +43,7 @@ export const TrackControlButton = ({ icon, title, onClick }: any) => {
     if (loading || error || success) return;
     setLoading(true);
     try {
-      await (onClick(ev));
+      await onClick(ev);
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
     } catch (e) {
@@ -46,7 +52,7 @@ export const TrackControlButton = ({ icon, title, onClick }: any) => {
     }
     setLoading(false);
   }
-  
+
   return (
     <div className="track_control_button" title={title} onClick={click}>
       {loading
