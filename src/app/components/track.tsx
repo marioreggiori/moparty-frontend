@@ -5,8 +5,11 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
   let coverStyle: any = {};
   if (image) {
     // todo: remove decode for double encode
-    let img = JSON.parse(image.replace(/'/g, '"'));
-    coverStyle.backgroundImage = `url('${img.uri}')`;
+    try{
+      coverStyle.backgroundImage = `url('${image.uri}')`;
+    }catch(e){
+      
+    }
   }
   return (
     <div className="track">
@@ -25,7 +28,7 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
 }
 
 export const TrackControlButton = ({ icon, title, onClick }: any) => {
-  
+
   return (
     <div className="track_control_button" title={title} onClick={onClick}>
       <FontAwesomeIcon icon={icon} />
