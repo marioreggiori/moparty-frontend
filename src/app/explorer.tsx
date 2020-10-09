@@ -20,7 +20,14 @@ export default (props: any) => {
     if (!search.trim()) return;
     setSearchIsLoading(true);
 
-    await fetch(`/search/?searchquery=${encodeURIComponent(search)}&backend=${Object.keys(filter).filter(key => !!filter[key]).join('&backend=')}`)
+    let url = `/search/?searchquery=${encodeURIComponent(search)}&backend=${Object.keys(filter).filter(key => !!filter[key]).join('&backend=')}`
+    
+    // use local dataset for dev
+    if(process.env.NODE_ENV === 'development'){
+      url = '/result.json';
+    }
+
+    await fetch(url)
       .then(res => res.json())
       .then(setSearchResult)
       .then(_ => setSearchIsLoading(false));

@@ -13,7 +13,7 @@ export default (props: any) => {
         if (!title) return null;
         return (
           <Track key={index} {...title} >
-            <TrackControlButton icon={faForward} title="Vote Skip" onClick={(ev: any) => {
+            <TrackControlButton icon={faForward} title="Vote Skip" onClick={async (ev: any) => {
               // todo vote skip
             }} />
           </Track>
