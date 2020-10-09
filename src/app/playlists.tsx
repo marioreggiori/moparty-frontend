@@ -63,16 +63,29 @@ const UserPlaylist = (props: any) => {
 
 const QueueSpotifyPlaylist = (props: any) => {
   const [spotifyUri, setSpotifyUri] = useState('');
+  const [invalid, setInvalid] = useState(false);
   const onSubmit = (ev: any) => {
     ev.preventDefault();
-    console.log(spotifyUri);
-    setSpotifyUri('');
+    let match = spotifyUri.match(/^(?:spotify:playlist:)?([a-zA-Z0-9]{22})$/);
+    if (match) {
+      // todo send match
+      console.log(match[1]);
+      setSpotifyUri('');
+    } else {
+      setSpotifyUri('');
+      setInvalid(true);
+    }
+  }
+
+  const onChange = (ev: any) => {
+    setSpotifyUri(ev.target.value);
+    setInvalid(false);
   }
 
   return (
     <>
       <form onSubmit={onSubmit}>
-        <input value={spotifyUri} onChange={ev => setSpotifyUri(ev.target.value)} className="queue_spotify_playlist_input" placeholder="Spotify URI eingeben" />
+        <input value={spotifyUri} onChange={onChange} className="queue_spotify_playlist_input" placeholder={invalid ? "Spotify URI not valid" : "Enter Spotify Playlist URI"} />
       </form>
     </>
   );

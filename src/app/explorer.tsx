@@ -87,7 +87,7 @@ const SearchResult = (props: any) => {
               <div className="icon">
                 <FontAwesomeIcon icon={icon} />
               </div>
-              <b>{label}</b> ({res.length} Treffer)
+              <b>{label}</b> ({searchIsLoading ? 'loading ...' : (res.length.toString() + ' found')})
             </div>
             <div className="search_result_source_list">
               <div className="search_result_source_list_inner">
