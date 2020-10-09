@@ -270,7 +270,7 @@ body {
       border: 2px solid;
       height: 50px;
       width: 50px;
-      background: gray;
+      background-image: url("/note.png");
       background-size: cover;
       background-position: center center;
       border-radius: 5px;
@@ -279,16 +279,20 @@ body {
   }
 
   &[data-source="local"] .cover {
-    border-color: #ffc107;
+    border-color: #f9a825;
+    background-color: #f9a825;
   }
   &[data-source="spotify"] .cover {
     border-color: #1db954;
+    background-color: #1db954;
   }
   &[data-source="youtube"] .cover {
     border-color: #ff0000;
+    background-color: #ff0000;
   }
   &[data-source="soundcloud"] .cover {
     border-color: #fe5000;
+    background-color: #fe5000;
   }
 
   .middle {
