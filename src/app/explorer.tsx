@@ -95,10 +95,10 @@ const SearchResult = (props: any) => {
                   return (
                     <Track key={index} {...track}>
                       <TrackControlButton icon={faHeart} title="Wünschen" onClick={(ev: any) => {
-                        console.log('Wünschen');
+                        // todo add to wishlist and update from response
                       }} />
                       <TrackControlButton icon={faPlay} title="Probehören" onClick={(ev: any) => {
-                        console.log('Probehören');
+                        // todo listen sample and update from response
                       }} />
                     </Track>
                   )

@@ -51,9 +51,13 @@ const UserPlaylist = (props: any) => {
         return (
           <Track key={index} {...track}>
             {index > 0 && (
-              <TrackControlButton icon={faArrowUp} title="hochschieben" />
+              <TrackControlButton icon={faArrowUp} title="hochschieben" onClick={(ev: any) => {
+                // todo move up in playlist
+              }} />
             )}
-            <TrackControlButton icon={faTrash} title="löschen" />
+            <TrackControlButton icon={faTrash} title="löschen" onClick={(ev: any) => {
+              // delete from playlist
+            }} />
           </Track>
         )
       })}
@@ -68,7 +72,7 @@ const QueueSpotifyPlaylist = (props: any) => {
     ev.preventDefault();
     let match = spotifyUri.match(/^(?:spotify:playlist:)?([a-zA-Z0-9]{22})$/);
     if (match) {
-      // todo send match
+      // todo send match[1]
       console.log(match[1]);
       setSpotifyUri('');
     } else {
