@@ -87,7 +87,7 @@ const SearchResult = (props: any) => {
               <div className="icon">
                 <FontAwesomeIcon icon={icon} />
               </div>
-              <b>{label}</b> {searchIsLoading || <div className="search_result_source_title_small">{res.length.toString()} Songs found</div>}
+              <b>{label}</b> {searchIsLoading || filter[key] === false || <div className="search_result_source_title_small">{res.length.toString()} Songs found</div>}
             </div>
             <div className="search_result_source_list">
               <div className="search_result_source_list_inner">
