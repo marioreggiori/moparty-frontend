@@ -56,7 +56,7 @@ const UserPlaylist = (props: any) => {
               }} />
             )}
             <TrackControlButton icon={faTrash} title="löschen" onClick={(ev: any) => {
-              // delete from playlist
+              // todo delete from playlist
             }} />
           </Track>
         )
