@@ -1,4 +1,4 @@
-import { ISearchFilterItem, ITrack } from './interfaces';
+import { ISearchFilterItem } from './interfaces';
 import { faSoundcloud, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faFolder } from '@fortawesome/free-solid-svg-icons';
 

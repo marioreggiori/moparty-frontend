@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { ITrack } from '../interfaces';
-
 
 export default ({ data: { name: title, artists }, image, children }: any) => {
   let coverStyle: any = {};
@@ -27,6 +25,7 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
 }
 
 export const TrackControlButton = ({ icon, title, onClick }: any) => {
+  
   return (
     <div className="track_control_button" title={title} onClick={onClick}>
       <FontAwesomeIcon icon={icon} />

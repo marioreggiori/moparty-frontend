@@ -14,24 +14,16 @@ export default (props: any) => {
   const setSearchResult = useSetRecoilState(searchResultState);
   const setSearchIsLoading = useSetRecoilState(searchIsLoadingState);
 
-  const onSubmit = (ev: any) => {
+  const onSubmit = async (ev: any) => {
     ev.preventDefault();
     setSearchResult({});
     if (!search.trim()) return;
     setSearchIsLoading(true);
 
-    setTimeout(() => {
-      fetch('./result.json')
-        .then(res => res.json())
-        .then(setSearchResult)
-        .then(_ => setSearchIsLoading(false));
-    }, 2000);
-
-
-    // todo update searchResultState
-    // await fetch(`/search/?searchquery=${encodeURIComponent(val)}&backend=${Object.keys(filter).filter(key => !!filter[key]).join('&backend=')}`)
-    //   .then(res => res.json())
-    //   .then(setSearchResult);
+    await fetch(`/search/?searchquery=${encodeURIComponent(search)}&backend=${Object.keys(filter).filter(key => !!filter[key]).join('&backend=')}`)
+      .then(res => res.json())
+      .then(setSearchResult)
+      .then(_ => setSearchIsLoading(false));
   }
 
   return (
