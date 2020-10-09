@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { searchFilterItems, tracks } from './data';
+import { searchFilterItems } from './data';
 
 // search
 export const searchState = atom({
@@ -26,27 +26,27 @@ export const searchIsLoadingState = atom({
 // current song
 export const currentSongState = atom({
   key: 'currentSongState',
-  default: tracks[0],
+  default: null,
 });
 
 
 // playlists
 export const wishListState = atom({
   key: 'wishListState',
-  default: tracks.slice(0, 8),
+  default: [],
 });
 
 export const playListState = atom({
   key: 'playListState',
-  default: tracks.slice(0, 20),
+  default: [],
 });
 
 export const upNextListState = atom({
   key: 'upNextListState',
-  default: tracks.slice(1, 15),
+  default: [],
 });
 
 export const historyListState = atom({
   key: 'historyListState',
-  default: tracks.slice(0, 25),
+  default: [],
 });

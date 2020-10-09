@@ -10,10 +10,10 @@ export default (props: any) => {
 
   return (
     <div id="now_playing">
-      {[currentSong, ...upNext].map((title, index) => {
-        if (!title) return null;
+      {[currentSong, ...upNext].map((track, index) => {
+        if (!track) return null;
         return (
-          <Track key={index} {...title} >
+          <Track key={index} {...track} >
             <TrackControlButton icon={faForward} title="Vote Skip" onClick={async (ev: any) => {
               // todo vote skip
             }} />

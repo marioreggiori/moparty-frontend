@@ -43,11 +43,13 @@ const UserPlaylist = (props: any) => {
   return (
     <>
       <div className="header">Meine Wunschliste</div>
+      {wishList.length === 0 && <EmptyPlaylist />}
       {wishList.map((track, index) => {
         return <Track key={index} {...track} />
       })}
       <div className="header">Meine Playlist</div>
       <QueueSpotifyPlaylist />
+      {playList.length === 0 && <EmptyPlaylist />}
       {playList.map((track, index) => {
         return (
           <Track key={index} {...track}>
@@ -102,6 +104,7 @@ const NextPlaylist = (props: any) => {
   return (
     <>
       <div className="header">Play Next</div>
+      {upNext.length === 0 && <EmptyPlaylist />}
       {upNext.map((track, index) => {
         return <Track key={index} {...track} />
       })}
@@ -114,6 +117,7 @@ const HistoryPlaylist = (props: any) => {
   return (
     <>
       <div className="header">History</div>
+      <div className="padding_center">currently not available</div>
       {history.map((track, index) => {
         return <Track key={index} {...track} />
       })}
@@ -127,4 +131,11 @@ const PlaylistSwitchButton = ({ icon, select, playlist, active }: any) => {
       <FontAwesomeIcon icon={icon} />
     </div>
   )
+}
+
+
+const EmptyPlaylist = (props: any) => {
+  return (
+    <div className="padding_center">empty</div>
+  );
 }

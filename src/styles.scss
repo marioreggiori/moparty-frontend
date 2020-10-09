@@ -261,6 +261,7 @@ body {
 .track {
   padding: 15px;
   display: flex;
+  line-height: 1.5;
   .left {
     width: 50px;
 
@@ -284,10 +285,21 @@ body {
     }
 
     .title,
+    .album,
     .artist {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    .album,
+    .artist {
+      font-size: 10px;
+
+      .track_icon {
+        display: inline-block;
+        width: 20px;
+      }
     }
   }
   .right {
@@ -299,8 +311,15 @@ body {
       padding: 0 10px;
 
       &[data-disabled="true"] {
-        cursor: wait;
+        cursor: default;
       }
     }
   }
+}
+
+.padding_center {
+  text-align: center;
+  padding: 20px;
+  color: #a8a8a8;
+  font-size: 12px;
 }

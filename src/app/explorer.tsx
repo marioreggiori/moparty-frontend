@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faPlay, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { searchFilterItems } from './data';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { searchFilterState, searchState, searchResultState, searchIsLoadingState } from './state';
+import { searchFilterState, searchState, searchResultState, searchIsLoadingState, wishListState } from './state';
 import Track, { TrackControlButton } from './components/track';
 
 
@@ -72,6 +72,7 @@ const SearchResult = (props: any) => {
   const filter = useRecoilValue(searchFilterState);
   const searchResult: any = useRecoilValue(searchResultState);
   const searchIsLoading = useRecoilValue(searchIsLoadingState);
+  const [wishList, setWishList]: any = useRecoilState(wishListState);
 
 
   return (
@@ -96,7 +97,7 @@ const SearchResult = (props: any) => {
                       <TrackControlButton icon={faHeart} title="Wünschen" onClick={async ev => {
                         // todo [test] add to wishlist and update from response
                         await fetch(`/user_wishlist/add?uri=${track.data.uri}`)
-                        // todo update wishlist
+                        setWishList([...wishList, track]);
                       }} />
                       <TrackControlButton icon={faPlay} title="Probehören" onClick={async ev => {
                         // todo listen sample and update from response

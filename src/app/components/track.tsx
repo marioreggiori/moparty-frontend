@@ -1,9 +1,9 @@
-import { faCheck, faExclamationCircle, faSync } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faExclamationCircle, faRecordVinyl, faSync, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { ITrackControlButtonProps } from '../interfaces';
 
-export default ({ data: { name: title, artists }, image, children }: any) => {
+export default ({ data: { name: title, artists, album: { name: album } }, image, children }: any) => {
   let coverStyle: any = {};
   if (image) {
     // todo: remove decode for double encode
@@ -20,7 +20,12 @@ export default ({ data: { name: title, artists }, image, children }: any) => {
       </div>
       <div className="middle">
         <div className="title">{title}</div>
-        <div className="artist">{artists.map((artist: any) => artist.name).join(', ')}</div>
+        <div className="album">
+          <div className="track_icon"><FontAwesomeIcon icon={faRecordVinyl} /></div>{album}
+        </div>
+        <div className="artist">
+          <div className="track_icon"><FontAwesomeIcon icon={faUserFriends} /></div>{artists.map((artist: any) => artist.name).join(', ')}
+        </div>
       </div>
       <div className="right">
         {children}
